@@ -225,18 +225,17 @@ public class RuffnoteAPIClient: NSObject {
         })
     }
 
-    func createIssue(#accessToken: String, issue: Issue, success: () -> (), failure: String -> ()) {
+    func createIssue(#accessToken: String, page: Page, success: () -> (), failure: String -> ()) {
         let manager = authorizedManager(accessToken)
         var params = [
             "issue" : [
-                "title" : issue.title,
-                "description" : issue.description
+                "title" : page.title,
+                "description" : page.content
             ]
         ]
         
         manager.POST(
-            // "\(site)\(version)/\(issue.note.path)/issues",
-            "\(site)\(version)/pandeiro245/1257/issues",
+            "\(site)\(version)/\(page.note.path)/issues",
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                 success()

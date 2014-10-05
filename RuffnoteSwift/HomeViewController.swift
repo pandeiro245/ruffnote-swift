@@ -26,15 +26,22 @@ class HomeViewController: UIViewController {
         let barsIcon = FAKFontAwesome.barsIconWithSize(self.iconSize)
         let barsImage = barsIcon.imageWithSize(CGSize(width: self.iconSize, height: self.iconSize))
         let menuItem = UIBarButtonItem(image: barsImage, style: .Plain, target: self, action: "menuItemDidTap:")
-        self.navigationItem.leftBarButtonItem = menuItem
+        self.navigationItem.leftBarButtonItems = [menuItem]
 
         // Right
         let checkIcon = FAKFontAwesome.checkIconWithSize(self.iconSize)
         let checkImage = checkIcon.imageWithSize(CGSize(width: self.iconSize, height: self.iconSize))
         let saveItem = UIBarButtonItem(image: checkImage, style: .Plain, target: self, action: "saveItemDidTap:")
-        //self.navigationItem.rightBarButtonItem = saveItem
+        
+        /*
+        let issuesIcon = FAKFontAwesome.barsIconWithSize(self.iconSize)
+        let issuesImage = issuesIcon.imageWithSize(CGSize(width: self.iconSize, height: self.iconSize))
+        let issuesItem = UIBarButtonItem(image: issuesImage, style: .Plain, target:self, action: "issuesItemDidTap:")
+        */
         
         self.queueItem = UIBarButtonItem(title: "\(PageQueue.defaultQueue.count)", style: .Plain, target: nil, action: nil)
+        
+        // self.navigationItem.rightBarButtonItems = [saveItem, self.queueItem, issuesItem]
         self.navigationItem.rightBarButtonItems = [saveItem, self.queueItem]
         
         // Title
@@ -87,8 +94,7 @@ class HomeViewController: UIViewController {
     }
     
     func titleButtonDidTap(sender: AnyObject) {
-        // let selectContrller = SelectNoteViewController()
-        let selectContrller = SelectIssueViewController()
+        let selectContrller = SelectNoteViewController()
         let navController = UINavigationController(rootViewController: selectContrller)
         self.presentViewController(navController, animated: true, completion: nil)
     }
@@ -135,6 +141,12 @@ class HomeViewController: UIViewController {
             style: .Cancel,
             handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func issuesItemDidTap(sender: AnyObject) {
+        let selectContrller = SelectIssueViewController()
+        let navController = UINavigationController(rootViewController: selectContrller)
+        self.presentViewController(navController, animated: true, completion: nil)
     }
 
     // MARK: Keyboard

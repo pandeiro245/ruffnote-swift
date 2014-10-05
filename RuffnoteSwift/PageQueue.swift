@@ -48,7 +48,8 @@ public class PageQueue: NSObject {
         self.synchronizing = true
         
         if let page = self.pages.firstObject as? Page {
-            RuffnoteAPIClient.sharedClient.createPage(
+            // RuffnoteAPIClient.sharedClient.createPage(
+            RuffnoteAPIClient.sharedClient.createIssue(
                 accessToken: AppConfiguration.sharedConfiguration.currentUser().accessToken,
                 page: page,
                 success: {
